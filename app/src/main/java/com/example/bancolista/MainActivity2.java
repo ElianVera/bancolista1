@@ -1,12 +1,9 @@
 package com.example.bancolista;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,7 +12,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import WebService.WebService;
 import WebServices.Asynchtask;
 import WebServices.WebService;
 
@@ -25,18 +21,18 @@ public class MainActivity2 extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.lista);
 
         Map<String, String> datos = new HashMap<String, String>();
         WebService ws= new
                 WebService("https://api-uat.kushkipagos.com/transfer/v1/bankList",
-                datos, MainActivity2.this, MainActivity1.this);
+                datos, MainActivity2.this, MainActivity2.this);
         ws.execute("GET","Public-Merchant-Id","84e1d0de1fbf437e9779fd6a52a9ca18");
-
+        //Localizar los controles
         TextView txtbienvenida = (TextView)findViewById(R.id.txtbienvenida);
-
+//Recuperamos la información pasada en el intent
         Bundle bundle = this.getIntent().getExtras();
-
+//Construimos el mensaje a mostrar
         txtbienvenida.setText("Hola!, Bienvenido \n " +
                 bundle.getString("Usuario"));
 
